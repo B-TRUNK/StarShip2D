@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://da588anadv2o"]
+
+[ext_resource type="Texture2D" uid="uid://c0mr60etunwwx" path="res://assets/pngtree-brown-house-wall-bricks-brick-realistic-real-png-image_3230087.png" id="1_2a1do"]
+[ext_resource type="PackedScene" uid="uid://cwvvgb5r0w1v2" path="res://scenes/starship.tscn" id="2_rukf0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mpl3p"]
+size = Vector2(1016, 88)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkfcl"]
+size = Vector2(208.634, 508.332)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_htb17"]
+size = Vector2(180, 555)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a0k24"]
+size = Vector2(64.0123, 630.985)
+
+[node name="walls" type="Node2D"]
+
+[node name="ground_wall" type="StaticBody2D" parent="."]
+
+[node name="groundSprite" type="Sprite2D" parent="ground_wall"]
+texture_filter = 1
+position = Vector2(642.312, 602.936)
+rotation = -1.57093
+scale = Vector2(1, 3.14727)
+texture = ExtResource("1_2a1do")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ground_wall"]
+position = Vector2(642, 604)
+shape = SubResource("RectangleShape2D_mpl3p")
+
+[node name="left_wall" type="StaticBody2D" parent="."]
+
+[node name="leftSprite" type="Sprite2D" parent="left_wall"]
+position = Vector2(204, 280)
+rotation = -0.434805
+scale = Vector2(2.36656, 1.58057)
+texture = ExtResource("1_2a1do")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="left_wall"]
+position = Vector2(204.5, 279.5)
+rotation = -0.431334
+shape = SubResource("RectangleShape2D_wkfcl")
+
+[node name="right_wall" type="StaticBody2D" parent="."]
+
+[node name="rightSprite" type="Sprite2D" parent="right_wall"]
+position = Vector2(1060.5, 280.25)
+scale = Vector2(2.05682, 1.71362)
+texture = ExtResource("1_2a1do")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="right_wall"]
+position = Vector2(1060, 279.5)
+shape = SubResource("RectangleShape2D_htb17")
+
+[node name="roof_wall" type="StaticBody2D" parent="."]
+position = Vector2(809, 46)
+rotation = -1.56391
+
+[node name="Sprite2D" type="Sprite2D" parent="roof_wall"]
+position = Vector2(13.4505, -154.229)
+scale = Vector2(0.694306, 1.95498)
+texture = ExtResource("1_2a1do")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="roof_wall"]
+position = Vector2(15.0741, -154.572)
+shape = SubResource("RectangleShape2D_a0k24")
+
+[node name="RigidBody2D" parent="." instance=ExtResource("2_rukf0")]
+position = Vector2(904, 290)

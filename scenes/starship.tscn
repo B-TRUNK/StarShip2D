@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://cwvvgb5r0w1v2"]
+
+[ext_resource type="Texture2D" uid="uid://bn7v5ual3sayf" path="res://assets/starship.png" id="1_rsmiq"]
+
+[sub_resource type="GDScript" id="GDScript_ccg8k"]
+script/source = "extends RigidBody2D
+
+var thrust = Vector2(0 ,-5000)
+var torque = 10000
+var torque_direction
+
+func _integrate_forces(state):
+	if Input.is_action_pressed(\"ui_up\"):
+		apply_force(state.get_total_gravity() + thrust.rotated(get_rotation()))
+	else:
+		apply_force(state.get_total_gravity() + Vector2())
+		
+		
+	if Input.is_action_pressed(\"ui_right\"):
+		torque_direction = 5
+		
+	elif Input.is_action_pressed(\"ui_left\"):
+		torque_direction = -5
+	else :
+		torque_direction = 0
+	
+	apply_torque(torque_direction * torque)
+	
+
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2iq62"]
+radius = 64.8845
+
+[node name="starship" type="RigidBody2D"]
+position = Vector2(81, 305)
+gravity_scale = 0.0
+linear_damp = 5.0
+angular_damp = 5.0
+script = SubResource("GDScript_ccg8k")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+scale = Vector2(2.37931, 2.06897)
+texture = ExtResource("1_rsmiq")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2iq62")

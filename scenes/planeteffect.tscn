@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b0jlsrgo74xvx"]
+
+[ext_resource type="PackedScene" uid="uid://cwvvgb5r0w1v2" path="res://scenes/starship.tscn" id="1_dtg01"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_osl38"]
+radius = 283.551
+
+[node name="planeteffect" type="Node2D"]
+
+[node name="planet" type="Area2D" parent="."]
+position = Vector2(829, 332)
+gravity_space_override = 1
+gravity_point = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="planet"]
+shape = SubResource("CircleShape2D_osl38")
+
+[node name="Sprite2D" type="Sprite2D" parent="planet"]
+
+[node name="starship" parent="." instance=ExtResource("1_dtg01")]
+position = Vector2(111, 298)
